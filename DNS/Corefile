@@ -1,0 +1,5 @@
+powerzio.net {
+    file powerzio.net.db
+    log
+    errors
+}
