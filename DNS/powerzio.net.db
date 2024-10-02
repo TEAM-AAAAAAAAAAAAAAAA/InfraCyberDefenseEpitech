@@ -7,11 +7,11 @@ $TTL    604800
                         604800 )    ; Negative Cache TTL
 ;
 @             IN      NS      ns.powerzio.net.
-f             IN      CNAME   cdn.powerzio.net
-beta-f        IN      CNAME   cdn.powerzio.net
+f             IN      CNAME   cdn
+beta-f        IN      CNAME   cdn
 google-dns    IN      A       8.8.8.8
-bank          IN      A       10.10.0.6
-files         IN      A       10.10.0.6
-beta.f        IN      A       10.10.0.6
-monitoring    IN      A       10.10.0.6
+bank          IN      A       10.10.10.10
+files         IN      A       10.10.10.10
+beta.f        IN      A       10.10.10.10
+monitoring    IN      A       10.10.10.10
 @             IN      TXT     "_globalsign-domainverification=aebu8Cohc2eaF3gae1saa9bee1egh1re"

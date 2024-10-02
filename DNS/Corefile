@@ -1,5 +1,11 @@
 powerzio.net {
-    file powerzio.net.db
+    any
     log
     errors
+    prometheus
+    health {
+        lameduck 5s
+    }
+
+    file powerzio.net.db
 }
