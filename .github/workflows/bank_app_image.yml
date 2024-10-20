@@ -40,4 +40,4 @@ jobs:
           file: ${{ github.workspace }}/bank_app/Dockerfile
           context: ${{ github.workspace }}/bank_app
           push: true
-          tags: "ghcr.io/team-aaaaaaaaaaaaaaaas/bank_app:latest"
+          tags: "ghcr.io/team-aaaaaaaaaaaaaaaa/bank_app:latest"
