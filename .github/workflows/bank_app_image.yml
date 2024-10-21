@@ -32,7 +32,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -40,4 +40,4 @@ jobs:
           file: ${{ github.workspace }}/bank_app/Dockerfile
           context: ${{ github.workspace }}/bank_app
           push: true
-          tags: "ghcr.io/cavonstavant/bank_app:latest"
+          tags: "ghcr.io/team-aaaaaaaaaaaaaaaa/bank_app:latest"
