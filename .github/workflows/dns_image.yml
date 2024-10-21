@@ -1,0 +1,43 @@
+name: Build and Push Bank app Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'DNS/**'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: dns
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          file: ${{ github.workspace }}/DNS/Dockerfile
+          context: ${{ github.workspace }}/DNS
+          push: true
+          tags: "ghcr.io/team-aaaaaaaaaaaaaaaa/dns:latest"

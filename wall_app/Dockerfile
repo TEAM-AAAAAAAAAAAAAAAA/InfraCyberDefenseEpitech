@@ -9,6 +9,8 @@ RUN dart compile exe bin/social_wall.dart -o bin/server
 
 FROM debian:bookworm-slim
 
+LABEL org.opencontainers.image.source=https://github.com/TEAM-AAAAAAAAAAAAAAAA/InfraCyberDefenseEpitech
+
 RUN mkdir /runtime
 RUN apt update && apt install bash imagemagick -y
 
