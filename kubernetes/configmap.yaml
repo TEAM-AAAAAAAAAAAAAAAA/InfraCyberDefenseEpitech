@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-config
+#data:
+#  Corefile: |
+#    $(cat Corefile)
+#  my-server.com.db: |
+#    $(cat my-server.com.db)

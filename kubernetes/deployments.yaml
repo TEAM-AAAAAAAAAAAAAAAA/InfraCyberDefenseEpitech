@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
       - name: bank-app
-        image: bank-app:latest
-        imagePullPolicy: Never
+        image: ghcr.io/team-aaaaaaaaaaaaaaaa/bank_app:latest
         ports:
         - containerPort: 5000
 ---
@@ -35,8 +34,7 @@ spec:
     spec:
       containers:
       - name: cdn
-        image: cdn:latest
-        imagePullPolicy: Never
+        image: ghcr.io/team-aaaaaaaaaaaaaaaa/cdn:latest
         ports:
         - containerPort: 80
 ---
@@ -56,8 +54,7 @@ spec:
     spec:
       containers:
       - name: social-app
-        image: social-app:latest
-        imagePullPolicy: Never
+        image: ghcr.io/team-aaaaaaaaaaaaaaaa/wall_app:latest
         ports:
         - containerPort: 8080
 ---
@@ -77,8 +74,7 @@ spec:
     spec:
       containers:
       - name: dns-server
-        image: dns-server:latest
-        imagePullPolicy: Never
+        image: ghcr.io/team-aaaaaaaaaaaaaaaa/cdn:latest
         ports:
         - containerPort: 53
           protocol: UDP
