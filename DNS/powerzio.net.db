@@ -10,8 +10,8 @@ $TTL    604800
 f             IN      CNAME   cdn
 beta-f        IN      CNAME   cdn
 google-dns    IN      A       8.8.8.8
-bank          IN      A       10.10.10.10
-files         IN      A       10.10.10.10
-beta.f        IN      A       10.10.10.10
-monitoring    IN      A       10.10.10.10
+bank          IN      A       10.0.0.3
+files         IN      A       10.0.0.3
+beta.f        IN      A       10.0.0.3
+monitoring    IN      A       10.0.0.3
 @             IN      TXT     "_globalsign-domainverification=aebu8Cohc2eaF3gae1saa9bee1egh1re"
