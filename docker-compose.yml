@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  dns:
+    image: ghcr.io/team-aaaaaaaaaaaaaaaa/cdn:latest
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./DNS/Corefile:/app/Corefile
+      #- ./DNS/zones:/app/zones
+    networks:
+      backend:
+        aliases:
+          - dns.internal
+
+  bank:
+    image: ghcr.io/team-aaaaaaaaaaaaaaaa/bank_app:latest
+    expose:
+      - "8080"
+    networks:
+      backend:
+        aliases:
+          - bank.internal
+
+  cdn:
+    image: ghcr.io/team-aaaaaaaaaaaaaaaa/cdn:latest
+    expose:
+      - "80"
+    networks:
+      backend:
+        aliases:
+          - cdn.internal
+
+  social:
+    image: ghcr.io/team-aaaaaaaaaaaaaaaa/wall_app:latest
+    expose:
+      - "8080"
+    volumes:
+      - uploaded_files:/app/uploadedFiles
+    networks:
+      backend:
+        aliases:
+          - social.internal
+
+networks:
+  backend:
+    name: app_network
+    driver: bridge
+
+volumes:
+  uploaded_files:
