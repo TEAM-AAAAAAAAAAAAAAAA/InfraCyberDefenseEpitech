@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: default
+  name: traefik-ingress-controller
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+  labels:
+    app: traefik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      containers:
+      - name: traefik
+        image: traefik:v3.3
+        args:
+          - --log.level=DEBUG
+          - --api.insecure=true
+          - --api.dashboard=true
+          - --providers.kubernetescrd
+          - --entryPoints.web.Address=:80
+          - --accesslog
+        ports:
+        - name: web
+          containerPort: 80
+        - name: dashboard
+          containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-service
+spec:
+  selector:
+    app: traefik
+  type: LoadBalancer
+  externalIPs:
+    - 192.168.1.121
+  ports:
+    - protocol: TCP
+      port: 8081
+      name: web
+    - protocol: TCP
+      port: 8081
+      name: dashboard
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: cyberdef-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`bank.cyberdef.net`)
+      kind: Rule
+      services:
+        - name: bank-app-service
+          port: 80
+    - match: Host(`cdn.cyberdef.net`)
+      kind: Rule
+      services:
+        - name: cdn-service
+          port: 80
+    - match: Host(`social.cyberdef.net`)
+      kind: Rule
+      services:
+        - name: social-app-service
+          port: 80

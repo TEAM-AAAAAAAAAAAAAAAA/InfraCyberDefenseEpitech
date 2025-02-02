@@ -5,9 +5,11 @@ metadata:
 spec:
   selector:
     app: bank-app
+  type: NodePort
   ports:
-  - port: 80
-    targetPort: 5000
+    - name: web
+      port: 80
+      targetPort: 5000
 ---
 apiVersion: v1
 kind: Service
@@ -16,8 +18,10 @@ metadata:
 spec:
   selector:
     app: cdn
+  type: NodePort
   ports:
-  - port: 80
+  - name: web
+    port: 80
     targetPort: 80
 ---
 apiVersion: v1
@@ -27,8 +31,10 @@ metadata:
 spec:
   selector:
     app: social-app
+  type: NodePort
   ports:
-  - port: 80
+  - name: web
+    port: 80
     targetPort: 8080
 ---
 apiVersion: v1
@@ -36,13 +42,17 @@ kind: Service
 metadata:
   name: dns-service
 spec:
-  type: NodePort
+  # type: NodePort
+  # selector:
+  #   app: dns-server
   selector:
     app: dns-server
   ports:
   - port: 53
-    nodePort: 30053
+    name: dns-udp
+    targetPort: 30053
     protocol: UDP
   - port: 53
-    nodePort: 30053
+    name: dns-tcp
+    targetPort: 30053
     protocol: TCP
