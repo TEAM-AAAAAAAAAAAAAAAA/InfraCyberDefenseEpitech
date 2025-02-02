@@ -30,8 +30,8 @@ spec:
           - --api.insecure=true
           - --api.dashboard=true
           - --providers.kubernetescrd
-          - --metrics.otlp=true
-          - --tracing.otlp=true
+          # - --metrics.otlp=true
+          # - --tracing.otlp=true
           - --entryPoints.web.Address=:80
           - --accesslog
         ports:
