@@ -30,13 +30,15 @@ spec:
           - --api.insecure=true
           - --api.dashboard=true
           - --providers.kubernetescrd
+          - --metrics.otlp=true
+          - --tracing.otlp=true
           - --entryPoints.web.Address=:80
           - --accesslog
         ports:
         - name: web
           containerPort: 8080
-        - name: dashboard
-          containerPort: 8081
+        # - name: dashboard
+        #   containerPort: 8081
 
 ---
 apiVersion: v1
@@ -51,11 +53,11 @@ spec:
     - 192.168.1.121
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       name: web
-    - protocol: TCP
-      port: 8081
-      name: dashboard
+    # - protocol: TCP
+    #   port: 8081
+    #   name: dashboard
 
 ---
 apiVersion: traefik.io/v1alpha1
