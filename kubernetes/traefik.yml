@@ -34,9 +34,9 @@ spec:
           - --accesslog
         ports:
         - name: web
-          containerPort: 80
-        - name: dashboard
           containerPort: 8080
+        - name: dashboard
+          containerPort: 8081
 
 ---
 apiVersion: v1
